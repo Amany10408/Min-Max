@@ -29,4 +29,4 @@ if ldconfig -p 2>/dev/null | grep -q libtcmalloc_minimal; then
   export LD_PRELOAD=libtcmalloc_minimal.so.4
 fi
 
-exec pty python main.py ${COMFYUI_ARGS} 2>&1
+pty python main.py ${COMFYUI_ARGS} 2>&1
