@@ -88,6 +88,8 @@ Auth: `Authorization: Bearer $OPEN_BUTTON_TOKEN`, or `?token=...`, or the Vast p
 
 H3’s trained range is about **5–15 s per generation** (24 fps, length grid `17k+5`). A novel-length scene is **many clips concatenated**, not one 15 s sample.
 
+**Prompt rules (v2):** English `"double quotes"` become **on-screen glyphs**. Put story words in spoken `<d>[English] …</d>` instead. Describe a **body + camera path** between keyframes (FL2VA is one continuous shot, not two stills). At most **one** on-screen string per clip, spelled exactly, held still for several seconds.
+
 Technique (what this repo automates):
 
 1. **Clean plates** — strip manhwa captions / bubbles first (`scripts/clean_manhwa.py`). Baked-in text will otherwise animate and flicker.  
