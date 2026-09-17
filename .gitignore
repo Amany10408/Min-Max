@@ -12,17 +12,28 @@ __pycache__/
 
 # Large local artifacts (never commit models or ComfyUI runtime)
 ComfyUI/
+MiniMax-H3/
 models/
 outputs/
 input/
 temp/
+.cache/
 *.safetensors
+*.safetensors.*
+*.incomplete
 *.ckpt
 *.pt
 *.pth
 *.bin
+*.gguf
+*.onnx
 *.mp4
 *.wav
+*.webm
+*.mkv
+*.zip
+*.tar
+*.tar.gz
 
 # OS / editor
 .DS_Store
