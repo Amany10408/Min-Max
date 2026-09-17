@@ -1,101 +1,147 @@
 {
   "project": "survival-as-barb-prologue",
   "title": "Survival as a Barbarian — Prologue",
+  "version": 2,
   "aspect": "9:16",
   "width": 768,
   "height": 1344,
   "fps": 24,
-  "style": "Cinematic 2D manhwa / Korean webtoon, painterly digital illustration, no on-screen captions, no speech bubbles, no subtitles, no UI text overlays.",
-  "global_audio_rules": "All novel narration is spoken voice-over, never burned into the picture. No subtitle bars. Dialogue from the protagonist is a tired young Korean-American / Korean male voice in English, close-mic, intimate. Pixel-game UI sounds stay diegetic. Music is non-diegetic.",
-  "chain": "Each clip's last frame is the next clip's first frame (FL2VA). After generation, extract the true last video frame and optionally re-use it. Concatenate with ffmpeg xfade 6 frames.",
+  "style": "2D-animated manhwa. Motion path between keyframes. Spoken audio via <d> only.",
+  "prompt_rules": [
+    "English double quotes mean ON-SCREEN glyphs. Never put novel narration in quotes.",
+    "Speech uses (S1) and <d>[English] line</d>. Voiceover must say lips remain closed.",
+    "FL2VA: both pictures belong to Shot 1; describe the BODY+CAMERA path, not two stills.",
+    "At most one short on-screen string per clip, held still for several seconds, spelled exactly.",
+    "BAN default: no subtitles, captions, bubbles, HUD words, Korean SFX."
+  ],
+  "global_audio_rules": "Narration is heard, not read. (S1) is the tired young man, dry close-mic English.",
+  "chain": "Each clip last generated frame feeds the next first_frame. Concatenate with ffmpeg.",
   "clips": [
     {
       "id": "c01_hospital",
-      "duration_s": 12,
+      "duration_s": 14,
       "first": "1.1.png",
       "last": "1.3.png",
-      "also": ["1.2.png", "1.4.png"],
-      "prompt": "For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\nHow the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. A pale young man lies in a sunlit hospital bed, messy dark hair, white hospital gown, playing a handheld game. Dust motes in a diagonal sunbeam. IV stand, quiet ward. Camera slowly pushes in as his thumbs tap. He speaks softly, wry: \"I've loved games since I was young.\" [Shot 2] Slightly closer, years implied by the same bed, same light. He keeps playing, a tired half-smile. Voice-over: \"I was always in the hospital, so gaming was the only thing to do. As time went on, it became a part of my life.\" No captions, no speech bubbles, no Korean SFX lettering.\n\noverall_soundscape: Distant hospital HVAC, faint heart-monitor beep, plastic button clicks of a handheld console, linen rustle, intimate dry voice-over.\n\nnon_diegetic_music: Sparse melancholic piano, slow, warm analog hiss, very low under the voice."
+      "also": [
+        "1.2.png",
+        "1.4.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa, painterly Korean webtoon. The young man in Picture 1 lies in a sunlit hospital bed in a white gown, handheld console raised. His thumbs tap rapidly, the mattress dips as he shifts his hips, his head turns a few degrees toward the bright window then back to the screen, a sweat bead slides. The camera pushes in with large amplitude at slow speed from a wide ward into a medium close-up of his face and hands, landing on the pose and framing of Picture 2. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) says in an off-screen voiceover: <d>[English] I've loved games since I was young.</d> while his lips remain completely closed. Later he says in an off-screen voiceover: <d>[English] I was always in the hospital, so gaming was the only thing to do.</d> while his lips remain completely closed. There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Hospital HVAC hum, a distant monitor beep, plastic button clicks, linen rustle, quiet breathing.\n\nnon_diegetic_music: Sparse low piano notes at a slow tempo with faint analog hiss, staying under the voice."
     },
     {
       "id": "c02_bored",
-      "duration_s": 10,
+      "duration_s": 14,
       "first": "1.5.png",
       "last": "1.7.png",
-      "also": ["1.6.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa action collage: a red-haired armored warrior lunges with a silver longsword through sparks in a dark cavern — treated as a game the protagonist is playing, not on-screen text. Camera tracks the slash. The young man off-screen snaps: \"Ah, shit… Is this AI for real? Why would it heal that guy there?\" [Shot 2] The fantasy combat continues then dulls; motion loses energy, colors flatten. Voice-over, exhausted: \"At some point, no matter what game I played, it wasn't as fun as it used to be. AOS, RPG, FPS — all garbage. The stories were cliché. I wanted something more special.\" No genre labels, no HUD text, no captions.\n\noverall_soundscape: Sword clash, fire sparks, then the mix thinning; frustrated breath; chair creak.\n\nnon_diegetic_music: Aggressive game-like drums that lose the beat and decay into a hollow drone."
+      "also": [
+        "1.6.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa action. A red-haired armored swordsman begins in the lunge of Picture 1 and completes a full downward slash: torso rotates, cape snaps, sparks and stone chips fly, the silver blade arcs across frame, then he recovers into the stance of Picture 2. The camera tracks the blade with large amplitude at fast speed, then eases. Off-screen, the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) snaps: <d>[English] Ah, shit. Is this AI for real?</d> After the slash he says in an off-screen voiceover: <d>[English] It wasn't as fun as it used to be.</d> while no lips of the warrior mouth those words. There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Steel clash, spark crackle, a heavy foot plant, cloth snap of a cape, one frustrated exhale.\n\nnon_diegetic_music: Aggressive drums at a fast tempo that lose the beat and decay into a hollow drone."
     },
     {
       "id": "c03_discover",
-      "duration_s": 10,
+      "duration_s": 12,
       "first": "1.8.png",
       "last": "1.11.png",
-      "also": ["1.9.png", "1.10.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. A dim room, a monitor or phone filling with a retro indie title: a 2D pixel dungeon crawler, English UI only as in-world game pixels, never as comic captions. The young man's eyes catch the light. Voice-over: \"That's when I discovered Dungeon and Stone. An overseas indie. Single-player RPG. 2D pixels. Didn't even support Korean.\" [Shot 2] He installs it anyway, clicking through. Keyboard clacks. A small reluctant smirk. \"It was free, so I tried it. Before long, I was completely hooked.\" No webtoon narration boxes.\n\noverall_soundscape: Mouse click, installer chime, 8-bit dungeon ambience leaking from cheap speakers, keyboard tatat.\n\nnon_diegetic_music: Curious lo-fi 8-bit motif blooming under piano."
+      "also": [
+        "1.9.png",
+        "1.10.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. A dim room, the young man leans toward a monitor that fills with a retro 2D pixel dungeon, English letters appear only as tiny unreadable pixels inside the game window, never as captions. He rolls the mouse, clicks, shoulders lift, a reluctant smirk forms as he sits forward. The camera pushes in with medium amplitude at slow speed toward his lit eyes and the screen glow, arriving at Picture 2. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) says in an off-screen voiceover: <d>[English] That's when I discovered Dungeon and Stone.</d> while his lips remain completely closed. There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Mouse click, a soft installer chime, 8-bit dungeon ambience from small speakers, keyboard taps.\n\nnon_diegetic_music: A curious lo-fi chiptune motif at moderate tempo under quiet piano."
     },
     {
       "id": "c04_hooked",
-      "duration_s": 12,
+      "duration_s": 14,
       "first": "1.12.png",
       "last": "1.16.png",
-      "also": ["1.13.png", "1.14.png", "1.15.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa mixed with top-down pixel dungeon. NPC companions, a priest almost wiping the run. The young man leans into the screen, whispering: \"Wow, that damn Priest almost got me killed right at the end.\" [Shot 2] Permadeath sting — the pixel hero falls. Camera holds on the player's tense hands. Voice-over: \"When your character died, you had to start over from the beginning. Companions were essential. High freedom. The world was interesting even in English. It had something I couldn't explain.\" No comic balloons, no 'YOU DIED' as a caption overlay unless it is tiny diegetic pixel game UI inside the game window.\n\noverall_soundscape: Pixel sword hits, party footsteps, a grim 8-bit death sting, frustrated laugh.\n\nnon_diegetic_music: Dark adventure strings mixed with chiptune, rising then cutting."
+      "also": [
+        "1.13.png",
+        "1.14.png",
+        "1.15.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa mixed with top-down pixel dungeon. A pixel adventurer runs across stone tiles, swings, staggers, then collapses onto the floor. The camera follows with a tracking shot at normal speed, then holds a static shot on the fallen body. After the fall, large red pixel letters reading \"YOU DIED\" fade in at the bottom of the game window and remain fully legible and unmoving for the rest of the shot, landing on Picture 2. No other words appear anywhere. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) whispers: <d>[English] That damn Priest almost got me killed.</d> There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio. The only permitted on-screen words are YOU DIED.\n\noverall_soundscape: Pixel footsteps, a sword hit, a grim 8-bit death sting, a short frustrated laugh.\n\nnon_diegetic_music: Dark adventure strings mixed with chiptune, rising then cutting on the death."
     },
     {
       "id": "c05_permadeath",
-      "duration_s": 10,
+      "duration_s": 12,
       "first": "1.17.png",
       "last": "1.20.png",
-      "also": ["1.18.png", "1.19.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. Years of nights: the same player hunched over Dungeon and Stone, subway uniform folded nearby. Combat is judgment, not HP bars. Voice-over: \"Even at full health, one mistake could wipe a character I had spent three months building.\" [Shot 2] Pixel hero face-down under a dungeon spotlight. He mutters: \"…Let's do this.\" After two years stuck before the midpoint, he swallows his pride. No English caption cards around the frame, no phone status bar.\n\noverall_soundscape: Low 8-bit dungeon wind, a heavy pixel death thud, subway rumble far away, determined inhale.\n\nnon_diegetic_music: Slow funeral chiptune converting into stubborn drums."
+      "also": [
+        "1.18.png",
+        "1.19.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. The young man hunches over the same pixel game through a night, then the view dives into the dungeon: the pixel hero takes one wrong step and drops. Spotlight tightens on the body. The camera pushes in with large amplitude at slow speed onto the fallen pixel figure of Picture 2. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) says in an off-screen voiceover: <d>[English] One mistake could wipe three months of work.</d> while his lips remain completely closed. He then mutters: <d>[English] Let's do this.</d> There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Low dungeon wind, a heavy pixel thud, a distant subway rumble, a determined inhale.\n\nnon_diegetic_music: Slow funeral chiptune converting into stubborn drums."
     },
     {
       "id": "c06_years",
-      "duration_s": 12,
+      "duration_s": 14,
       "first": "1.21.png",
       "last": "1.26.png",
-      "also": ["1.22.png", "1.23.png", "1.24.png", "1.25.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa montage: translating English strategy pages, sparse forums, shaking his head. Voice-over: \"It didn't show up on Korean portals. Overseas posts weren't helpful. I understood this game deeper than people who quit after two months.\" [Shot 2] He gives up on guides. Top-down dungeon corridor. He recites a path under his breath: \"Up three times, left four times, down once, left twice, up again six times, right four times. Finally, avoid the trap… okay.\" Nine years of life flash as tiny stills on the monitor bezel — discharge day, campus, a job offer — while he never stops playing. No on-screen paragraphs.\n\noverall_soundscape: Page-scroll, keyboard, dungeon footsteps in exact counted rhythm, distant campus chatter bleeding in.\n\nnon_diegetic_music: Time-lapse piano ostinato, years stacking."
+      "also": [
+        "1.22.png",
+        "1.23.png",
+        "1.24.png",
+        "1.25.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. The young man dismisses a laptop, then the pixel hero walks a counted path through a top-down corridor: three steps up, four left, one down, two left, six up, four right, then sidesteps a floor trap. The camera tracks the pixel figure from above at a steady walking speed and ends on the corridor framing of Picture 2. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) recites under his breath: <d>[English] Up three, left four, down once, left twice.</d> There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Keyboard clacks becoming exact dungeon footsteps, a trap click avoided, paper rustle.\n\nnon_diegetic_music: A repeating piano ostinato at walking tempo, years stacking as extra notes."
     },
     {
       "id": "c07_gate",
-      "duration_s": 12,
+      "duration_s": 14,
       "first": "1.27.png",
       "last": "1.32.png",
-      "also": ["1.28.png", "1.29.png", "1.30.png", "1.31.png", "1.31(2).png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. Pixel character stands before a vast dark portal: Gate of the Abyss. The player's fingertips are stiff on the keys. He exhales: \"Phew.\" Then, almost sacred: \"The final boss….\" Voice-over: \"To someone else it might be nothing. It took me nine years to get here. It wouldn't be an exaggeration to say it was with me through all of my twenties.\" [Shot 2] The character steps closer. The portal breathes like a living void. Camera slowly pushes into the gate. No comic captions.\n\noverall_soundscape: Sub-bass portal hum, sparse drip in a stone hall, heartbeat in the mix, dry swallow.\n\nnon_diegetic_music: Choir-like pads, held notes, dread and awe."
+      "also": [
+        "1.28.png",
+        "1.29.png",
+        "1.30.png",
+        "1.31.png",
+        "1.31(2).png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. A pixel adventurer stands before a vast dark portal, the Gate of the Abyss. He walks forward, torchlight flickers, the void breathes. In the last seconds, large real human hands enter from both sides of the frame and hover around the portal as if over a screen, matching Picture 2. The camera pushes in with large amplitude at slow speed into the gate. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) exhales: <d>[English] Phew.</d> then says in an off-screen voiceover: <d>[English] It took me nine years to get here.</d> while his lips remain completely closed. There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Sub-bass portal hum, a stone-hall drip, a dry swallow, fabric of sleeves as hands rise.\n\nnon_diegetic_music: Held choir-like pads at very slow tempo, a single low brass swell."
     },
     {
       "id": "c08_enter",
-      "duration_s": 10,
+      "duration_s": 15,
       "first": "1.33.png",
       "last": "1.37.png",
-      "also": ["1.34.png", "1.36.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. In-world pixel dialogue only inside the game window: Will you enter? He clicks YES without hesitation. A second, grander warning: You may not be able to return. Are you sure? He scoffs under his breath: \"From a player's perspective, unnecessary drama. Like I wouldn't enter at this point?\" [Shot 2] Cursor on Yes. Click. Screen cuts to a black loading void. No webtoon speech bubbles, no outer narration boxes — only diegetic game pixels if needed.\n\noverall_soundscape: Classic RPG confirm beep, heavier warning chord, mouse click, fans spinning up.\n\nnon_diegetic_music: Silence then a single low brass hit on the click."
+      "also": [
+        "1.34.png",
+        "1.36.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 15.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa looking into a pixel-art menu. A dark dialogue box appears with the English words \"Will you enter?\" and a cursor beside YES. The camera holds a static shot so those four words stay fully legible and unmoving for several seconds. The cursor then slides to YES and clicks. The first box is replaced by a second box whose only English words are \"You may not be able to return.\" Those words stay fully legible and still until a final click, then the screen cuts to black, matching Picture 2. No other letters, no extra quotes, no misspellings. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) scoffs under his breath: <d>[English] Like I wouldn't enter at this point.</d>\n\noverall_soundscape: Classic RPG confirm beeps, a heavier warning chord, a mouse click, PC fans spinning up.\n\nnon_diegetic_music: Silence, then a single low brass hit on the last click."
     },
     {
       "id": "c09_loading",
-      "duration_s": 10,
+      "duration_s": 12,
       "first": "1.38.png",
       "last": "1.42.png",
-      "also": ["1.39.png", "1.40.png", "1.41.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 10.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. Close on the young man's face lit by a black monitor, pupils tight. Internal voice, racing: \"How many patterns will this guy have? Attributes? Instant-kill for sure. I'll give up on the first try and gather information.\" [Shot 2] His reflection warps in the dark glass. Excitement and dread. No captions. The loading void on the monitor begins to glow from inside, too bright for a game.\n\noverall_soundscape: PC coil whine, his breathing, a rising electrical tone from the monitor.\n\nnon_diegetic_music: Tight ticking percussion under a rising synth that shouldn't be coming from the game."
+      "also": [
+        "1.39.png",
+        "1.40.png",
+        "1.41.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. Close on the young man's face lit by a black monitor. Pupils tighten, he leans in, a reflection warps across the glass, the void on the monitor blooms from a pin of light into a hard white glare. The camera pushes in with small amplitude at slow speed onto his eyes, ending on Picture 2. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) says in an off-screen voiceover: <d>[English] I'll gather information. I won't win the first try.</d> while his lips remain completely closed. There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: PC coil whine, his breathing, a rising electrical tone from the monitor.\n\nnon_diegetic_music: Tight ticking percussion under a rising synth."
     },
     {
       "id": "c10_transfer",
-      "duration_s": 12,
+      "duration_s": 14,
       "first": "1.43.png",
       "last": "1.46.png",
-      "also": ["1.44.png", "1.45.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. The black monitor types diegetic system messages in clean English then suddenly Korean, light spilling into the room: You have reached the Abyss. Tutorial complete. He freezes. Voice, confused: \"Tutorial complete? No — more importantly, why is this in Korean? Dungeon and Stone only supported English.\" [Shot 2] Commencing transfer. The screen becomes a physical blast of white. He throws an arm up, shouting: \"Agh, fuck! My eyes!\" No comic lettering, no outer caption cards; the system lines exist only as in-world monitor light.\n\noverall_soundscape: Harsh UI blip in Korean TTS-like tone, rising whine, then a blinding broadband flash, his shout, ringing tinnitus.\n\nnon_diegetic_music: Cuts out on the flash, replaced by ear-ring drone."
+      "also": [
+        "1.44.png",
+        "1.45.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. The young man stares at a dark monitor. Clean English letters type onto the screen only, one line, fully legible: \"Tutorial complete.\" The line holds still for several seconds. He freezes, then shoves back from the desk as the screen detonates into a physical blast of white light. He throws an arm across his face, landing in the blown-out white of Picture 2. The camera shakes slightly then pushes into the flare. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) says: <d>[English] Tutorial complete? Why is this in Korean?</d> then shouts: <d>[English] Agh, fuck! My eyes!</d> No extra on-screen sentences besides Tutorial complete.\n\noverall_soundscape: A harsh UI blip, a rising whine, a broadband flash, his shout, ringing tinnitus.\n\nnon_diegetic_music: The score cuts out on the flash and is replaced by an ear-ring drone."
     },
     {
       "id": "c11_wake",
-      "duration_s": 12,
+      "duration_s": 14,
       "first": "1.47.png",
       "last": "1.48.png",
-      "also": ["1.49.png"],
-      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 2) aligns with the 12.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] Cinematic 2D manhwa. Total white, heat on skin, anesthetic fade. Camera holds in the void. Voice-over, dissolving: \"I was usually confident in a crisis. In this moment I had no clue.\" [Shot 2] Flash. Consciousness drops. Then eyelids open onto black — a new place, crowd murmur somewhere far, a stunned inhale. He does not speak. End on darkness and the feeling of having arrived. No congratulations captions, no speech bubbles, no Korean SFX drawings.\n\noverall_soundscape: Tinnitus, body-heat whoosh, then distant muffled crowd murmur, a gasp, stone-hall reverb.\n\nnon_diegetic_music: After silence, a new low adventure drone, unresolved."
+      "also": [
+        "1.49.png"
+      ],
+      "prompt": "How the reference pictures align with the target video — Picture 1 (from Shot 1) aligns with the 0.00-second mark of the target video; Picture 2 (from Shot 1) aligns with the 14.00-second mark of the target video.\n\nintegrated_multimodal_description: [Shot 1] 2D-animated manhwa. The frame begins in total white, heat-haze, then an eyelid cracks open and dark lashes sweep as the world falls into black stone and distant crowd murmur. A sweat drop runs. The camera pulls out with small amplitude at slow speed from the white void into the dark arrival of Picture 2. the tired young man with messy dark hair, a dry close-mic English voice, late twenties (S1) says in an off-screen voiceover: <d>[English] In this moment I had no clue.</d> while his lips remain completely closed. There is no on-screen text, no subtitles, no captions, no speech bubbles, no narration boxes, no HUD lettering, and no Korean sound-effect characters. All story words exist only as spoken audio.\n\noverall_soundscape: Tinnitus, a body-heat whoosh, a gasp, muffled crowd murmur in stone reverb.\n\nnon_diegetic_music: After a beat of silence, a low unresolved drone."
     }
   ]
 }
