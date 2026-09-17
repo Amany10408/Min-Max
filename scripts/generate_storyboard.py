@@ -227,6 +227,7 @@ def main() -> None:
     ap.add_argument("--steps", type=int, default=4)
     ap.add_argument("--seed", type=int, default=10408)
     ap.add_argument("--no-chain-generated-frames", action="store_true")
+    ap.add_argument("--skip-existing", action="store_true")
     args = ap.parse_args()
 
     sb = json.loads(Path(args.storyboard).read_text())
@@ -237,6 +238,14 @@ def main() -> None:
 
     for i, shot in enumerate(sb["clips"]):
         if args.clip_id and shot["id"] != args.clip_id:
+            continue
+        dest = Path(args.final).parent / "clips" / f"{i:02d}_{shot['id']}.mp4"
+        chain_last = Path(args.final).parent / "chain_frames" / f"{shot['id']}_last.png"
+        if args.skip_existing and dest.exists():
+            print(f"=== skip existing {dest}")
+            clips_out.append(dest)
+            if chain_last.exists():
+                prev_generated_last = chain_last
             continue
         first_src = img_dir / shot["first"]
         last_src = img_dir / shot["last"]
