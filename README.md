@@ -84,6 +84,34 @@ Auth: `Authorization: Bearer $OPEN_BUTTON_TOKEN`, or `?token=...`, or the Vast p
 
 ---
 
+## Longer than 15 seconds (clip chaining)
+
+H3’s trained range is about **5–15 s per generation** (24 fps, length grid `17k+5`). A novel-length scene is **many clips concatenated**, not one 15 s sample.
+
+Technique (what this repo automates):
+
+1. **Clean plates** — strip manhwa captions / bubbles first (`scripts/clean_manhwa.py`). Baked-in text will otherwise animate and flicker.  
+2. **Storyboard** — group images into shots in `storyboards/*.json`. Each shot is one H3 **FL2VA** job: `first_frame` + `last_frame` + a spoken-audio prompt (narration lives in the prompt, not on the picture).  
+3. **Chain** — after clip *i* finishes, extract its last video frame and use it as clip *i+1*’s first frame so motion continues across the cut.  
+4. **Concat** — `ffmpeg` joins the MP4s. Target length = sum of shot durations (this prologue is ~2 minutes across 11 clips).
+
+```bash
+# 1) Remove captions / phone chrome
+python scripts/clean_manhwa.py \
+  --input /path/to/raw_panels \
+  --output /workspace/survival_barb/clean
+
+# 2) Generate every shot, chain last→first, write one file
+python scripts/generate_storyboard.py \
+  --storyboard storyboards/survival_as_barb.json \
+  --images /workspace/survival_barb/clean \
+  --final /workspace/survival_barb/output/prologue.mp4
+```
+
+In the ComfyUI UI the same idea is: **Image to Video** node with both `first_frame` and `last_frame` connected, duration ≤ 15, queue shot 2 using shot 1’s last frame.
+
+---
+
 ## Model profiles (`PROFILE` in `.env`)
 
 | Profile | Disk (approx) | Use when |
@@ -132,7 +160,11 @@ Min-Max/
 │   ├── bootstrap_vast.sh      # one-shot on a new VM
 │   ├── install.sh
 │   ├── download_models.sh     # HF only — not git LFS
-│   └── setup_vast_service.sh
+│   ├── setup_vast_service.sh
+│   ├── clean_manhwa.py        # strip captions / bubbles
+│   └── generate_storyboard.py # H3 clip chain + ffmpeg concat
+├── storyboards/
+│   └── survival_as_barb.json  # prologue shot list (no images)
 ├── vast/
 │   ├── comfyui.sh
 │   └── comfyui.conf
